@@ -1,11 +1,12 @@
 ﻿using DataAccess.DAO;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.DAOs
+namespace DataAccess.DAO
 {
     public class SqlDao
     {
@@ -28,7 +29,7 @@ namespace DataAccess.DAOs
         //Paso 2: Redefinir el constructor default y convertirlo en privado
         private SqlDao()
         {
-            _connectionString = @"Data Source=srv-sqldatabase-crojas.database.windows.net;Initial Catalog=CenfoCinemas-BD;Persist Security Info=True;User ID=sysman;Password=Cenfotec123!;Trust Server Certificate=True";
+            _connectionString = @"Data Source=srv-sqldatabase-crojas.database.windows.net;Persist Security Info=True;User ID=sysman;Password=Cenfotec123!;Trust Server Certificate=True";
         }
 
         //Paso 3: Definir el metodo que expone la unica instancia de SqlDao
