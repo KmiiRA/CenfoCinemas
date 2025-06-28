@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DAO
 {
-    public class SqlOperations
+    public class SqlOperation
     {
 
         public string ProcedureName { get; set; }
         public List<SqlParameter> Parameters { get; set; }
-        public SqlOperations()
+        public SqlOperation()
         {
             Parameters = new List<SqlParameter>();
         }

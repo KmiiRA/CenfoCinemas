@@ -18,7 +18,7 @@ public class Program
 
         while (!exit)
         {
-            Console.WriteLine("\n===== MENÚ PRINCIPAL =====");
+            Console.WriteLine("\n-------MENÚ-------");
             Console.WriteLine("1. Crear usuario");
             Console.WriteLine("2. Consultar usuario");
             Console.WriteLine("3. Consultar usuario por ID");
@@ -70,10 +70,10 @@ public class Program
                     break;
                 case "0":
                     exit = true;
-                    Console.WriteLine("¡Hasta luego!");
+                    Console.WriteLine("Saliendo...");
                     break;
                 default:
-                    Console.WriteLine("Opción inválida, intente de nuevo.");
+                    Console.WriteLine("Opción no válida, intente de nuevo.");
                     break;
             }
         }
@@ -81,7 +81,7 @@ public class Program
 
     static void CrearUsuario(SqlDao sqlDao)
     {
-        Console.WriteLine("\n--- Crear Usuario ---");
+        Console.WriteLine("\n----Crear Usuario----");
         Console.Write("Código de usuario: ");
         var userCode = Console.ReadLine();
         Console.Write("Nombre: ");
@@ -92,7 +92,7 @@ public class Program
         var password = Console.ReadLine();
         Console.Write("Estado: ");
         var status = Console.ReadLine();
-        Console.Write("Fecha de nacimiento (yyyy-MM-dd): ");
+        Console.Write("Fecha de nacimiento (AAAA-MM-DD): ");
         var birthDate = DateTime.Parse(Console.ReadLine());
 
 
@@ -112,8 +112,8 @@ public class Program
 
     static void ActualizarUsuario(SqlDao sqlDao)
     {
-        Console.WriteLine("\n--- Actualizar Usuario ---");
-        Console.Write("Digite el ID del usuario que deseas editar: ");
+        Console.WriteLine("\n----Actualizar Usuario----");
+        Console.Write("Digite el ID del usuario que desea editar: ");
         int id = int.Parse(Console.ReadLine());
 
         Console.Write("Nombre: ");
@@ -124,10 +124,10 @@ public class Program
         string password = Console.ReadLine();
         Console.Write("Estado: ");
         string status = Console.ReadLine();
-        Console.Write("Fecha de nacimiento (yyyy-MM-dd): ");
+        Console.Write("Fecha de nacimiento (AAAA-MM-DD): ");
         string birthDate = Console.ReadLine();
 
-        var userOperation = new SqlOperations();
+        var userOperation = new SqlOperation();
         userOperation.ProcedureName = "UP_USER_PR";
         userOperation.Addint64Param("P_Id", id);
         userOperation.AddStringParameter("P_Name", name);
@@ -149,7 +149,7 @@ public class Program
     }
     static void ConsusltarUsuarioPorId(SqlDao sqlDao)
     {
-        Console.WriteLine("\n--- Consultar Usuario por ID ---");
+        Console.WriteLine("\n----Consultar Usuario por ID----");
         Console.Write("Ingrese el ID del usuario: ");
         int userId = int.Parse(Console.ReadLine());
 
@@ -165,7 +165,7 @@ public class Program
 
     static void ConsualtarUsuarioPorUserCode(SqlDao sqlDao)
     {
-        Console.WriteLine("\n--- Consultar Usuario por Código ---");
+        Console.WriteLine("\n----Consultar Usuario por Código----");
         Console.Write("Ingrese el código de usuario: ");
         string userCode = Console.ReadLine();
         var uCrud = new UserCrudFactory();
@@ -178,10 +178,10 @@ public class Program
 
     static void EliminarUsuarios(SqlDao sqlDao)
     {
-        Console.WriteLine("\n---Eliminar Usuarios---");
-        Console.WriteLine("Ingrese el Id del usuario que desaeas eliminar");
+        Console.WriteLine("\n----Eliminar Usuarios----");
+        Console.WriteLine("Ingrese el Id del usuario que desaea eliminar");
         int userId = int.Parse(Console.ReadLine());
-        var userOperation = new SqlOperations();
+        var userOperation = new SqlOperation();
         userOperation.ProcedureName = "Delete_USER_PR";
         userOperation.Addint64Param("P_Id", userId);
         var results = sqlDao.ExecuteQueryProcedure(userOperation);
@@ -195,7 +195,7 @@ public class Program
         var title = Console.ReadLine();
         Console.Write("Descripción: ");
         var description = Console.ReadLine();
-        Console.Write("Fecha de lanzamiento (yyyy-MM-dd): ");
+        Console.Write("Fecha de lanzamiento (AAAA-MM-dd): ");
         var releaseDate = DateTime.Parse(Console.ReadLine());
         Console.Write("Género: ");
         var genre = Console.ReadLine();
@@ -205,8 +205,8 @@ public class Program
         var movie = new Movie()
         {
             Title = title,
-            description = description,
-            ReleaseDate = releaseDate,
+            Description = description,
+            RealiseDate = releaseDate,
             Genre = genre,
             Director = director
         };
@@ -227,7 +227,7 @@ public class Program
 
     static void ConsultarPeliculasPorId(SqlDao sqlDao)
     {
-        Console.WriteLine("\n--- Consultar Película por ID ---");
+        Console.WriteLine("\n----Consultar Película por ID----");
         Console.Write("Ingrese el ID de la película: ");
         int movieId = int.Parse(Console.ReadLine());
         var movieCrud = new MovieCrudFactory();

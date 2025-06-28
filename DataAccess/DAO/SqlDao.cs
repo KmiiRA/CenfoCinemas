@@ -44,7 +44,7 @@ namespace DataAccess.DAO
 
         //Metodo que permite ejectura un store procedure en la base de datos
         // no genera retorno, solo en caso de excepciones retorna exception
-        public List<Dictionary<string, object>> ExecuteQueryProcedure(SqlOperations sqlOperation)
+        public List<Dictionary<string, object>> ExecuteQueryProcedure(SqlOperation sqlOperation)
         {
 
             var lstResults = new List<Dictionary<string, object>>();
@@ -94,7 +94,7 @@ namespace DataAccess.DAO
         }
 
 
-        public void ExecuteProcedure(SqlOperations sqlOperation)
+        public void ExecuteProcedure(SqlOperation sqlOperation)
         {
             using (var conn = new SqlConnection(_connectionString))
             {

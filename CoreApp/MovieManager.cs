@@ -18,7 +18,7 @@ namespace CoreApp
             try
             {
            
-                if (movie.ReleaseDate == default ||
+                if (movie.RealiseDate == default ||
                     string.IsNullOrWhiteSpace(movie.Genre) ||
                     string.IsNullOrWhiteSpace(movie.Director))
                 {
@@ -41,7 +41,7 @@ namespace CoreApp
             }
             catch (Exception ex)
             {
-                ManagerExection(ex);
+                ManagerException(ex);
             }
          }
         public List<Movie> RetrieveAll()
@@ -67,7 +67,7 @@ namespace CoreApp
             try
             {
                 var uCrud = new MovieCrudFactory();
-                var existingMovie = uCrud.RetrieveById<Movie>(movie.id);
+                var existingMovie = uCrud.RetrieveById<Movie>(movie.Id);
 
                 if (existingMovie == null)
                 {
@@ -76,17 +76,17 @@ namespace CoreApp
 
                 var movieWithSameTitle = uCrud.RetrieveByTitle<Movie>(new Movie { Title = movie.Title });
 
-                if (movieWithSameTitle != null && movieWithSameTitle.id != movie.id)
+                if (movieWithSameTitle != null && movieWithSameTitle.Id != movie.Id)
                 {
                     throw new Exception("Ya existe otra película con el mismo título");
                 }
 
                 uCrud.Update(movie);
-                return RetrieveById(movie.id);
+                return RetrieveById(movie.Id);
             }
             catch (Exception ex)
             {
-                ManagerExection(ex);
+                ManagerException(ex);
                 return null;
             }
         }
@@ -110,7 +110,7 @@ namespace CoreApp
             }
             catch (Exception ex)
             {
-                ManagerExection(ex);
+                ManagerException(ex);
                 return null;
             }
         }
@@ -147,7 +147,7 @@ namespace CoreApp
                 Console.WriteLine(" API KEY encontrada: " + apiKey);
 
                 var client = new SendGridClient(apiKey);
-                var from_email = new EmailAddress("isaacjiemmenez@gmail.com", "CenfoCinemas");
+                var from_email = new EmailAddress("XXXXXXXXXXXXXXXXXXXX", "CenfoCinemas");
                 var to_email = new EmailAddress(user.Email, user.Name);
                 var subject = "Se a registado de peliculas";
                 var plainTextContent = $"Hola {user.Name}, tenemos una nueva película: {movie.Title} dirigida por {movie.Director}.";
@@ -183,9 +183,9 @@ namespace CoreApp
             <li><strong>Título:</strong> {movie.Title}</li>
             <li><strong>Género:</strong> {movie.Genre}</li>
             <li><strong>Director:</strong> {movie.Director}</li>
-            <li><strong>Fecha de estreno:</strong> {movie.ReleaseDate:yyyy-MM-dd}</li>
+            <li><strong>Fecha de estreno:</strong> {movie.RealiseDate:AAAA-MM-DD}</li>
         </ul>
-        <p>{movie.description}</p>
+        <p>{movie.Description}</p>
         <br/>
         <p>Gracias por ser parte de <strong>CenfoCinemas</strong>.</p>
     </div>

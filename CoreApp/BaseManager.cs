@@ -8,7 +8,7 @@ namespace CoreApp
 {
     public class BaseManager
     {
-        protected void ManageException(Exception exception)
+        protected void ManagerException(Exception exception)
         {
             throw exception;
             // TO DO: Implementación de manejo de excepciones pendiente

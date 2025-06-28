@@ -55,7 +55,7 @@ namespace CoreApp
             }
             catch (Exception ex)
             {
-                ManagerExection(ex);
+                ManagerException(ex);
             }
 
         }
@@ -93,15 +93,15 @@ namespace CoreApp
                 if (IsOver18(user))
                 {
                     var uCrud = new UserCrudFactory();
-                    var existingUser = uCrud.RetrieveById<User>(user.id);
+                    var existingUser = uCrud.RetrieveById<User>(user.Id);
 
                     if (existingUser != null)
                     {
                         var emailConflict = uCrud.RetrieveByEmail<User>(user);
-                        if (emailConflict == null || emailConflict.id == user.id)
+                        if (emailConflict == null || emailConflict.Id == user.Id)
                         {
                             uCrud.Update(user);
-                            return RetrieveById(user.id);
+                            return RetrieveById(user.Id);
                         }
                         else
                         {
@@ -120,7 +120,7 @@ namespace CoreApp
             }
             catch (Exception ex)
             {
-                ManagerExection(ex);
+                ManagerException(ex);
                 return null;
             }
         }
@@ -143,7 +143,7 @@ namespace CoreApp
             }
             catch (Exception ex)
             {
-                ManagerExection(ex);
+                ManagerException(ex);
                 return null;
             }
         }
@@ -181,7 +181,7 @@ namespace CoreApp
                 Console.WriteLine(" API KEY encontrada: " + apiKey);
 
                 var client = new SendGridClient(apiKey);
-                var from_email = new EmailAddress("isaacjiemmenez@gmail.com", "CenfoCinemas");
+                var from_email = new EmailAddress("XXXXXXXXXX@gmail.com", "CenfoCinemas");
                 var to_email = new EmailAddress(user.Email, user.Name);
                 var subject = "Bienvenido a CenfoCinemas";
                 var plainTextContent = $"Hola {user.Name}, gracias por registrarte.";

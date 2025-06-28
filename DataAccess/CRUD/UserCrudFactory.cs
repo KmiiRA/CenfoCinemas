@@ -39,7 +39,7 @@ namespace DataAccess.CRUD
         {
             var lstUsers = new List<T>();
 
-            var sqlOperation = new SqlOperation() { ProcedureName = "RET_ALL_USERS_PR" };
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_ALL_USER_PR" };
             var lstResults = _sqlDao.ExecuteQueryProcedure(sqlOperation);
 
             if (lstResults.Count > 0)
@@ -132,6 +132,11 @@ namespace DataAccess.CRUD
             };
 
             return user;
+        }
+
+        public override T RetrieveById<T>()
+        {
+            throw new NotImplementedException();
         }
     }
 }
