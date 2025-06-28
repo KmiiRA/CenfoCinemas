@@ -44,33 +44,7 @@ namespace DataAccess.DAO
 
         //Metodo que permite ejectura un store procedure en la base de datos
         // no genera retorno, solo en caso de excepciones retorna exception
-
-        public void ExecuteProcedure(SqlOperation sqlOperation)
-        {
-            //Conectarse a la BD
-            //Ejecuta el SP
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                using (var command = new SqlCommand(sqlOperation.ProcedureName, conn)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                })
-                {
-                    //Set de los parametros
-                    foreach (var param in sqlOperation.Parameters)
-                    {
-                        command.Parameters.Add(param);
-                    }
-                    //Ejectura el SP
-                    conn.Open();
-                    command.ExecuteNonQuery();
-                }
-
-            }
-        }
-
-        // procedimiento para ejectura SP Que retornan un set de datos
-        public List<Dictionary<string, object>> ExecuteQueryProcedure(SqlOperation sqlOperation)
+        public List<Dictionary<string, object>> ExecuteQueryProcedure(SqlOperations sqlOperation)
         {
 
             var lstResults = new List<Dictionary<string, object>>();
@@ -118,6 +92,30 @@ namespace DataAccess.DAO
 
             return lstResults;
         }
+
+
+        public void ExecuteProcedure(SqlOperations sqlOperation)
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand(sqlOperation.ProcedureName, conn)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                })
+                {
+                    //Set de los parametros
+                    foreach (var param in sqlOperation.Parameters)
+                    {
+                        command.Parameters.Add(param);
+                    }
+                    //Ejectura el SP
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+
+            }
+        }
+
     }
 }
 

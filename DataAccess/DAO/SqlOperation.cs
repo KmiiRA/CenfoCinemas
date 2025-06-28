@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DTOs;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DAO
 {
-
-    /*
-     * clase con instrucciones de lo que tiene que hacer el sql dao
-     */
-
-    public class SqlOperation
+    public class SqlOperations
     {
 
         public string ProcedureName { get; set; }
         public List<SqlParameter> Parameters { get; set; }
-        public SqlOperation()
+        public SqlOperations()
         {
             Parameters = new List<SqlParameter>();
         }
@@ -42,5 +38,16 @@ namespace DataAccess.DAO
             Parameters.Add(new SqlParameter(paramName, paramValue));
         }
 
+        public void Addint64Param(string paramName, int paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue));
+        }
+
+        internal void AddStringParameter(string v, Movie movie)
+        {
+            throw new NotImplementedException();
+        }
     }
+
+
 }
