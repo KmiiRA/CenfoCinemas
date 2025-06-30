@@ -147,7 +147,7 @@ namespace CoreApp
                 Console.WriteLine(" API KEY encontrada: " + apiKey);
 
                 var client = new SendGridClient(apiKey);
-                var from_email = new EmailAddress("XXXXXXXXXXXXXXXXXXXX", "CenfoCinemas");
+                var from_email = new EmailAddress("crojasa@ucenfotec.ac.cr", "CenfoCinemas");
                 var to_email = new EmailAddress(user.Email, user.Name);
                 var subject = "Se a registado de peliculas";
                 var plainTextContent = $"Hola {user.Name}, tenemos una nueva película: {movie.Title} dirigida por {movie.Director}.";
@@ -176,7 +176,7 @@ namespace CoreApp
 </head>
 <body>
     <div class='container'>
-        <h1>🎬 ¡Nueva película registrada!</h1>
+        <h1>¡Nueva película registrada!</h1>
         <p>Hola <strong>{user.Name}</strong>,</p>
         <p>Estamos emocionados de anunciarte que hemos agregado una nueva película a nuestro catálogo:</p>
         <ul>

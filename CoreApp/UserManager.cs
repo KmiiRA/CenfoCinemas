@@ -50,7 +50,7 @@ namespace CoreApp
                 }
                 else
                 {
-                    throw new Exception("Usuario no puede registrarse porque no cumple el requisito minimo de la edad");
+                    throw new Exception("Usuario no puede registrarse porque no cumple el requisito mínimo de la edad");
                 }
             }
             catch (Exception ex)
@@ -181,7 +181,7 @@ namespace CoreApp
                 Console.WriteLine(" API KEY encontrada: " + apiKey);
 
                 var client = new SendGridClient(apiKey);
-                var from_email = new EmailAddress("XXXXXXXXXX@gmail.com", "CenfoCinemas");
+                var from_email = new EmailAddress("crojasa@ucenfotec.ac.cr", "CenfoCinemas");
                 var to_email = new EmailAddress(user.Email, user.Name);
                 var subject = "Bienvenido a CenfoCinemas";
                 var plainTextContent = $"Hola {user.Name}, gracias por registrarte.";
